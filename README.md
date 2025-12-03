@@ -1,16 +1,83 @@
-# React + Vite
+# Sudoku Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, feature-rich Sudoku game built with React and Vite. Play classic Sudoku with multiple difficulty levels, hints, and customizable settings.
 
-Currently, two official plugins are available:
+## 🎮 Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Play now:** [https://sudoku-theta-ten.vercel.app/](https://sudoku-theta-ten.vercel.app/)
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Multiple Difficulty Levels**: Easy, Medium, Hard, and Expert
+- **Smart Hints System**: Get helpful hints when you're stuck
+- **Pencil Marks (Notes)**: Add candidate numbers to cells
+- **Undo/Redo**: Easily correct mistakes
+- **Timer**: Track your solving time
+- **Mistake Counter**: Keep track of errors
+- **Settings Menu**:
+  - Toggle sound effects
+  - Auto-remove pencil marks
+  - Highlight matching numbers
+- **Responsive Design**: Play on desktop or mobile devices
+- **Modern UI**: Clean and intuitive interface
 
-## Expanding the ESLint configuration
+## 🚀 Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+
+- Node.js (v14 or higher)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd sudoku-game
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Start the development server:
+```bash
+npm run dev
+```
+
+4. Open your browser and navigate to `http://localhost:5173`
+
+## 🛠️ Built With
+
+- **React** - UI library
+- **Vite** - Build tool and dev server
+- **CSS3** - Styling
+- **Lucide React** - Icons
+
+## 📦 Build for Production
+
+```bash
+npm run build
+```
+
+The production-ready files will be in the `dist` directory.
+
+## 🎯 How to Play
+
+1. Select a difficulty level
+2. Click on a cell to select it
+3. Enter numbers 1-9 using your keyboard or the number pad
+4. Use pencil mode to add candidate numbers
+5. Use hints if you get stuck
+6. Complete the puzzle without making too many mistakes!
+
+## ⚙️ Technologies
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) - Fast Refresh with Babel
+- React Hooks for state management
+- Custom Sudoku generator and solver algorithms
+
+## 📝 License
+
+This project is open source and available under the MIT License.
