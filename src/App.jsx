@@ -157,7 +157,7 @@ function App() {
   // Undo
   const handleUndo = () => {
     if (isPaused || historyStep <= 0) return;
-    playAudio('click');
+    playSound('click');
     const prevStep = historyStep - 1;
     const prevState = history[prevStep];
     setBoard(prevState.board);
@@ -169,7 +169,7 @@ function App() {
   // Redo
   const handleRedo = () => {
     if (isPaused || historyStep >= history.length - 1) return;
-    playAudio('click');
+    playSound('click');
     const nextStep = historyStep + 1;
     const nextState = history[nextStep];
     setBoard(nextState.board);
@@ -181,7 +181,7 @@ function App() {
   // Auto Pencil
   const handleAutoPencil = () => {
     if (isPaused || !board) return;
-    playAudio('pencil');
+    playSound('pencil');
 
     const newNotes = notes.map(row => [...row]);
     let changed = false;
@@ -220,7 +220,7 @@ function App() {
   const handleCellClick = (row, col) => {
     if (isPaused) return;
     setSelectedCell({ row, col });
-    playAudio('click');
+    playSound('click');
   };
 
   const handleNumberSelect = (num) => {
@@ -235,7 +235,7 @@ function App() {
 
       if (currentNotes.includes(num)) {
         newNotes[row][col] = currentNotes.filter(n => n !== num);
-        playAudio('pencil');
+        playSound('pencil');
       } else {
         // Conflict check for notes
         let isConflict = false;
@@ -250,13 +250,13 @@ function App() {
         if (isConflict) {
           setErrors([...conflicts, { row, col }]);
           // Không cộng lỗi khi nhập ghi chú sai, chỉ cảnh báo
-          playAudio('error');
+          playSound('error');
           setTimeout(() => setErrors([]), 1000);
           return;
         }
 
         newNotes[row][col] = [...currentNotes, num].sort();
-        playAudio('pencil');
+        playSound('pencil');
       }
       setNotes(newNotes);
       saveToHistory(board, newNotes);
@@ -299,7 +299,7 @@ function App() {
         const newErrors = errors.filter(e => !(e.row === row && e.col === col));
         setErrors([...newErrors, { row, col }]);
         setMistakes(prev => prev + 1);
-        playAudio('error');
+        playSound('error');
         setBoard(newBoard);
         setNotes(newNotes);
         saveToHistory(newBoard, newNotes);
@@ -307,7 +307,7 @@ function App() {
         // Xóa ô này khỏi danh sách lỗi nếu nhập đúng
         const newErrors = errors.filter(e => !(e.row === row && e.col === col));
         setErrors(newErrors);
-        playAudio('number');
+        playSound('number');
         setBoard(newBoard);
         setNotes(newNotes);
         saveToHistory(newBoard, newNotes);
@@ -315,7 +315,7 @@ function App() {
         if (isComplete(newBoard)) {
           setIsRunning(false);
           localStorage.removeItem('sudoku-game-save');
-          playAudio('win');
+          playSound('win');
           setTimeout(() => setShowWinModal(true), 500);
         }
       }
@@ -342,7 +342,7 @@ function App() {
     const newErrors = errors.filter(e => !(e.row === row && e.col === col));
     setErrors(newErrors);
 
-    playAudio('delete');
+    playSound('delete');
     saveToHistory(newBoard, newNotes);
   };
 
@@ -354,7 +354,7 @@ function App() {
       setCurrentHint(smartHint);
       setShowHintModal(true);
       setHintsUsed(prev => prev + 1);
-      playAudio('click');
+      playSound('click');
     } else {
       // Fallback to old hint if no smart technique found
       const hint = getHint(board, gameData.solution);
@@ -370,7 +370,7 @@ function App() {
         });
         setShowHintModal(true);
         setHintsUsed(prev => prev + 1);
-        playAudio('click');
+        playSound('click');
       } else {
         showToast('Không tìm thấy gợi ý! Bạn đã giải xong rồi! 🎉', 'success');
       }
@@ -387,7 +387,7 @@ function App() {
     setBoard(newBoard);
     setNotes(newNotes);
     setSelectedCell({ row: hint.row, col: hint.col });
-    playAudio('number');
+    playSound('number');
     saveToHistory(newBoard, newNotes);
 
     // Xóa lỗi của ô này nếu có
@@ -397,7 +397,7 @@ function App() {
     if (isComplete(newBoard)) {
       setIsRunning(false);
       localStorage.removeItem('sudoku-game-save');
-      playAudio('win');
+      playSound('win');
       setTimeout(() => setShowWinModal(true), 500);
     }
   };
@@ -420,12 +420,12 @@ function App() {
     if (newErrors.length > 0) {
       setErrors(newErrors);
       setMistakes(prev => prev + newErrors.length);
-      playAudio('error');
+      playSound('error');
       showToast(`Tìm thấy ${newErrors.length} lỗi! Hãy kiểm tra lại các ô màu đỏ.`, 'error');
       // Không tự động xóa lỗi sau 2s nữa, để người dùng tự sửa
     } else {
       setErrors([]); // Xóa hết lỗi nếu kiểm tra thấy đúng
-      playAudio('win');
+      playSound('win');
       showToast('Tuyệt vời! Tất cả các ô đã điền đều chính xác! 🎉', 'success');
     }
   };
@@ -443,7 +443,7 @@ function App() {
 
   const handleTogglePause = () => {
     setIsPaused(prev => !prev);
-    playAudio('click');
+    playSound('click');
   };
 
   useEffect(() => {
@@ -470,7 +470,7 @@ function App() {
         handleErase();
       } else if (e.key === 'n' || e.key === 'N') {
         setIsNoteMode(prev => !prev);
-        playAudio('click');
+        playSound('click');
       } else if (e.key === 'ArrowUp' || e.key === 'ArrowDown' ||
         e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
         e.preventDefault();
@@ -482,7 +482,7 @@ function App() {
         if (e.key === 'ArrowLeft') newCol = Math.max(0, col - 1);
         if (e.key === 'ArrowRight') newCol = Math.min(8, col + 1);
         setSelectedCell({ row: newRow, col: newCol });
-        playAudio('click');
+        playSound('click');
       }
     };
     window.addEventListener('keydown', handleKeyPress);
@@ -498,7 +498,7 @@ function App() {
       const newNotes = notes.map(r => [...r]);
       newNotes[row][col] = [];
       setNotes(newNotes);
-      playAudio('delete');
+      playSound('delete');
       saveToHistory(board, newNotes);
       showToast('Đã xóa ghi chú ô này', 'info');
     }
@@ -531,7 +531,7 @@ function App() {
 
     setBoard(newBoard);
     setNotes(Array(9).fill(null).map(() => Array(9).fill([]))); // Xóa hết ghi chú
-    playAudio('win');
+    playSound('win');
     setIsRunning(false);
     localStorage.removeItem('sudoku-game-save');
     setTimeout(() => setShowWinModal(true), 500);

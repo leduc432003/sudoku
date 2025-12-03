@@ -45,7 +45,23 @@ const SudokuCell = ({
             }}
         >
             {value !== 0 ? (
-                value
+                <span style={{
+                    fontSize: '1.25rem',
+                    fontWeight: 'bold',
+                    lineHeight: '1',
+                    color: hasError ? '#ffffff' :
+                        isGiven ? '#1f2937' :
+                            isSameNumber ? '#ffffff' :
+                                isSelected ? '#111827' : '#2563eb',
+                    display: 'block',
+                    width: '100%',
+                    height: '100%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                }}>
+                    {value}
+                </span>
             ) : (
                 notes && notes.length > 0 && (
                     <div className="grid grid-cols-3 gap-0 w-full h-full p-0.5 pointer-events-none">

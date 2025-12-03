@@ -13,6 +13,7 @@ const SudokuBoard = ({
 }) => {
     const getIsSameNumber = (row, col) => {
         if (isPaused || !selectedCell || board[row][col] === 0) return false;
+        if (row === selectedCell.row && col === selectedCell.col) return false;
         return board[selectedCell.row][selectedCell.col] === board[row][col];
     };
 

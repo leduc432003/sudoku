@@ -22,7 +22,7 @@ const playTone = (freq, type, duration, vol = 0.1) => {
     osc.stop(audioContext.currentTime + duration);
 };
 
-export const playSound = {
+const sounds = {
     click: () => playTone(600, 'sine', 0.1, 0.1),
     number: () => playTone(800, 'sine', 0.1, 0.1),
     delete: () => playTone(300, 'triangle', 0.15, 0.1),
@@ -38,3 +38,10 @@ export const playSound = {
         });
     }
 };
+
+export const playSound = (soundType) => {
+    if (sounds[soundType]) {
+        sounds[soundType]();
+    }
+};
+
