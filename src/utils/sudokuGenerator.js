@@ -1,11 +1,13 @@
 // Sudoku Generator - Tạo bảng Sudoku hợp lệ và không trùng lặp
 
+// Độ khó của Sudoku - Số ô cần xóa để tạo puzzle
+// MASTER: Cực kỳ khó - Chỉ có 17-22 số gợi ý ban đầu, cần kỹ thuật nâng cao
 export const DIFFICULTY_LEVELS = {
-    EASY: { name: 'Dễ', cellsToRemove: 30 },
-    MEDIUM: { name: 'Trung Bình', cellsToRemove: 40 },
-    HARD: { name: 'Khó', cellsToRemove: 50 },
-    EXPERT: { name: 'Chuyên Gia', cellsToRemove: 60 },
-    EXTREME: { name: 'Cực Khó', cellsToRemove: 64 }
+    EASY: { name: 'Dễ', cellsToRemove: 30 },           // 51 clues
+    MEDIUM: { name: 'Trung Bình', cellsToRemove: 40 }, // 41 clues
+    HARD: { name: 'Khó', cellsToRemove: 50 },          // 31 clues
+    EXPERT: { name: 'Chuyên Gia', cellsToRemove: 55 }, // 26 clues
+    MASTER: { name: 'Cực Khó', cellsToRemove: 64, minCellsToRemove: 59 } // 17-22 clues
 };
 
 // Kiểm tra số có hợp lệ tại vị trí không
@@ -134,14 +136,24 @@ function createPuzzle(completeBoard, cellsToRemove) {
 
 // Tạo Sudoku game mới
 export function generateSudoku(difficulty = 'MEDIUM') {
-    const { cellsToRemove } = DIFFICULTY_LEVELS[difficulty];
+    const difficultyConfig = DIFFICULTY_LEVELS[difficulty];
+
+    // Đối với MASTER, chọn ngẫu nhiên số ô cần xóa trong khoảng minCellsToRemove đến cellsToRemove
+    let cellsToRemove = difficultyConfig.cellsToRemove;
+    if (difficultyConfig.minCellsToRemove !== undefined) {
+        const min = difficultyConfig.minCellsToRemove;
+        const max = difficultyConfig.cellsToRemove;
+        cellsToRemove = Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
     const completeBoard = generateCompleteBoard();
     const puzzle = createPuzzle(completeBoard, cellsToRemove);
 
     return {
         puzzle: puzzle.map(row => [...row]),
         solution: completeBoard.map(row => [...row]),
-        difficulty
+        difficulty,
+        cluesCount: 81 - cellsToRemove // Số gợi ý ban đầu
     };
 }
 

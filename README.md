@@ -8,9 +8,15 @@ A modern, feature-rich Sudoku game built with React and Vite. Play classic Sudok
 
 ## ✨ Features
 
-- **Multiple Difficulty Levels**: Easy, Medium, Hard, and Expert
+- **Multiple Difficulty Levels**: 
+  - **Dễ (Easy)**: 51 clues - Perfect for beginners
+  - **Trung Bình (Medium)**: 41 clues - Moderate challenge
+  - **Khó (Hard)**: 31 clues - Requires logical thinking
+  - **Chuyên Gia (Expert)**: 26 clues - Advanced techniques needed
+  - **Cực Khó (Master)**: 17-22 clues - Extremely challenging, requires advanced solving techniques
 - **Smart Hints System**: Get helpful hints when you're stuck
 - **Pencil Marks (Notes)**: Add candidate numbers to cells
+- **Auto Pencil**: Automatically fill in all possible candidates
 - **Undo/Redo**: Easily correct mistakes
 - **Timer**: Track your solving time
 - **Mistake Counter**: Keep track of errors

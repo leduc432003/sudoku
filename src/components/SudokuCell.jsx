@@ -53,7 +53,6 @@ const SudokuCell = ({
                         isGiven ? '#1f2937' :
                             isSameNumber ? '#ffffff' :
                                 isSelected ? '#111827' : '#2563eb',
-                    display: 'block',
                     width: '100%',
                     height: '100%',
                     display: 'flex',

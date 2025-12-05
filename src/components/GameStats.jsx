@@ -18,13 +18,13 @@ const GameStats = ({
         return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
     };
 
-    const difficulties = ['EASY', 'MEDIUM', 'HARD', 'EXPERT', 'EXTREME'];
+    const difficulties = ['EASY', 'MEDIUM', 'HARD', 'EXPERT', 'MASTER'];
     const difficultyNames = {
         EASY: 'Dễ',
         MEDIUM: 'Trung Bình',
         HARD: 'Khó',
         EXPERT: 'Chuyên Gia',
-        EXTREME: 'Cực Khó'
+        MASTER: 'Cực Khó'
     };
 
     return (
