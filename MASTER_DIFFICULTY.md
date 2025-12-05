@@ -5,23 +5,20 @@
 ### 1. Cập nhật `sudokuGenerator.js`
 
 **Đặc điểm của độ khó MASTER (Cực Khó):**
-- Số ô gợi ý ban đầu: **17-22 ô** (ngẫu nhiên)
-- Số ô cần xóa: **59-64 ô** (ngẫu nhiên)
+- Số ô gợi ý ban đầu: **17 ô** (cố định)
+- Số ô cần xóa: **64 ô** (cố định)
 - Yêu cầu: Cần kỹ thuật giải Sudoku nâng cao
 
 **Thay đổi:**
 ```javascript
-// Trước đây: EXTREME với 64 ô cố định
-EXTREME: { name: 'Cực Khó', cellsToRemove: 64 }
-
-// Bây giờ: MASTER với khoảng 59-64 ô
-MASTER: { name: 'Cực Khó', cellsToRemove: 64, minCellsToRemove: 59 }
+// Cấu hình độ khó MASTER
+MASTER: { name: 'Cực Khó', cellsToRemove: 64 }  // 17 clues - Cực kỳ khó!
 ```
 
-**Logic tạo puzzle:**
-- Hàm `generateSudoku()` đã được cập nhật để hỗ trợ khoảng ngẫu nhiên
-- Với độ khó MASTER, mỗi lần tạo game mới sẽ chọn ngẫu nhiên số ô cần xóa từ 59-64
-- Điều này tạo ra sự đa dạng và thử thách khác nhau mỗi lần chơi
+**Lưu ý:**
+- 17 là số lượng gợi ý tối thiểu để một Sudoku có thể có lời giải duy nhất
+- Đây là độ khó cao nhất có thể trong Sudoku
+- Mỗi game vẫn khác nhau do vị trí các ô gợi ý được chọn ngẫu nhiên
 
 ### 2. Cập nhật `GameStats.jsx`
 
@@ -36,15 +33,15 @@ MASTER: { name: 'Cực Khó', cellsToRemove: 64, minCellsToRemove: 59 }
 - Mô tả số lượng gợi ý cho mỗi độ khó
 - Nhấn mạnh độ khó MASTER yêu cầu kỹ thuật nâng cao
 
-## Tính năng mới
+## Tính năng
 
-### Độ khó động (Dynamic Difficulty)
-- MASTER là độ khó đầu tiên có **khoảng ngẫu nhiên** thay vì số cố định
-- Mỗi game MASTER sẽ có từ 17-22 ô gợi ý ban đầu
-- Tăng tính replay value và thử thách
+### Độ khó tối đa
+- MASTER là độ khó **cao nhất có thể** trong Sudoku
+- Với chỉ **17 ô gợi ý**, đây là số lượng tối thiểu để đảm bảo puzzle có lời giải duy nhất
+- Yêu cầu người chơi thành thạo các kỹ thuật nâng cao
 
 ### Thông tin bổ sung
-- Hàm `generateSudoku()` bây giờ trả về `cluesCount` (số gợi ý ban đầu)
+- Hàm `generateSudoku()` trả về `cluesCount` (số gợi ý ban đầu = 17)
 - Có thể sử dụng thông tin này để hiển thị cho người chơi nếu cần
 
 ## Cách sử dụng
@@ -70,9 +67,9 @@ MASTER: { name: 'Cực Khó', cellsToRemove: 64, minCellsToRemove: 59 }
 Để kiểm tra độ khó MASTER:
 1. Chạy game: `npm run dev`
 2. Chọn độ khó "Cực Khó"
-3. Quan sát số lượng ô trống (nên có 59-64 ô trống)
+3. Quan sát số lượng ô trống (nên có đúng 64 ô trống, 17 ô có số)
 4. Thử giải puzzle và kiểm tra độ khó
 
 ---
 
-**Tóm lại:** Độ khó MASTER/Cực Khó đã được thêm thành công với đặc điểm chỉ có 17-22 số gợi ý ban đầu, tạo ra thử thách cực kỳ khó và yêu cầu kỹ thuật giải Sudoku nâng cao.
+**Tóm lại:** Độ khó MASTER/Cực Khó đã được thiết lập với **chỉ 17 số gợi ý ban đầu** - đây là số lượng tối thiểu để một Sudoku có lời giải duy nhất. Đây là thử thách cực kỳ khó và yêu cầu kỹ thuật giải Sudoku nâng cao như X-Wing, Swordfish, Coloring, và nhiều kỹ thuật khác.

@@ -1,13 +1,33 @@
 // Sudoku Generator - Tạo bảng Sudoku hợp lệ và không trùng lặp
 
-// Độ khó của Sudoku - Số ô cần xóa để tạo puzzle
-// MASTER: Cực kỳ khó - Chỉ có 17-22 số gợi ý ban đầu, cần kỹ thuật nâng cao
+// Độ khó của Sudoku - Số ô cho sẵn (clues)
+// Mỗi lần chơi sẽ random số ô cho sẵn trong khoảng min-max
 export const DIFFICULTY_LEVELS = {
-    EASY: { name: 'Dễ', cellsToRemove: 30 },           // 51 clues
-    MEDIUM: { name: 'Trung Bình', cellsToRemove: 40 }, // 41 clues
-    HARD: { name: 'Khó', cellsToRemove: 50 },          // 31 clues
-    EXPERT: { name: 'Chuyên Gia', cellsToRemove: 55 }, // 26 clues
-    MASTER: { name: 'Cực Khó', cellsToRemove: 64, minCellsToRemove: 59 } // 17-22 clues
+    EASY: {
+        name: 'Dễ',
+        minClues: 36,
+        maxClues: 45
+    },
+    MEDIUM: {
+        name: 'Trung Bình',
+        minClues: 32,
+        maxClues: 35
+    },
+    HARD: {
+        name: 'Khó',
+        minClues: 28,
+        maxClues: 31
+    },
+    EXPERT: {
+        name: 'Chuyên Gia',
+        minClues: 22,
+        maxClues: 27
+    },
+    MASTER: {
+        name: 'Cực Khó',
+        minClues: 17,
+        maxClues: 21
+    }
 };
 
 // Kiểm tra số có hợp lệ tại vị trí không
@@ -138,13 +158,13 @@ function createPuzzle(completeBoard, cellsToRemove) {
 export function generateSudoku(difficulty = 'MEDIUM') {
     const difficultyConfig = DIFFICULTY_LEVELS[difficulty];
 
-    // Đối với MASTER, chọn ngẫu nhiên số ô cần xóa trong khoảng minCellsToRemove đến cellsToRemove
-    let cellsToRemove = difficultyConfig.cellsToRemove;
-    if (difficultyConfig.minCellsToRemove !== undefined) {
-        const min = difficultyConfig.minCellsToRemove;
-        const max = difficultyConfig.cellsToRemove;
-        cellsToRemove = Math.floor(Math.random() * (max - min + 1)) + min;
-    }
+    // Random số ô cho sẵn trong khoảng min-max
+    const cluesCount = Math.floor(
+        Math.random() * (difficultyConfig.maxClues - difficultyConfig.minClues + 1)
+    ) + difficultyConfig.minClues;
+
+    // Tính số ô cần xóa
+    const cellsToRemove = 81 - cluesCount;
 
     const completeBoard = generateCompleteBoard();
     const puzzle = createPuzzle(completeBoard, cellsToRemove);
@@ -153,7 +173,7 @@ export function generateSudoku(difficulty = 'MEDIUM') {
         puzzle: puzzle.map(row => [...row]),
         solution: completeBoard.map(row => [...row]),
         difficulty,
-        cluesCount: 81 - cellsToRemove // Số gợi ý ban đầu
+        cluesCount // Số gợi ý ban đầu (đã random)
     };
 }
 

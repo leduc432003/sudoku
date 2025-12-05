@@ -8,12 +8,13 @@ A modern, feature-rich Sudoku game built with React and Vite. Play classic Sudok
 
 ## ✨ Features
 
-- **Multiple Difficulty Levels**: 
-  - **Dễ (Easy)**: 51 clues - Perfect for beginners
-  - **Trung Bình (Medium)**: 41 clues - Moderate challenge
-  - **Khó (Hard)**: 31 clues - Requires logical thinking
-  - **Chuyên Gia (Expert)**: 26 clues - Advanced techniques needed
-  - **Cực Khó (Master)**: 17-22 clues - Extremely challenging, requires advanced solving techniques
+- **Multiple Difficulty Levels** (Random clues within range):
+  - **Dễ (Easy)**: 36-45 clues - Perfect for beginners
+  - **Trung Bình (Medium)**: 32-35 clues - Moderate challenge
+  - **Khó (Hard)**: 28-31 clues - Requires logical thinking
+  - **Chuyên Gia (Expert)**: 22-27 clues - Advanced techniques needed
+  - **Cực Khó (Master)**: 17-21 clues - Extremely challenging, requires advanced solving techniques
+- **🤖 AI-Powered Hints**: Get intelligent hints from Gemini AI that explain techniques and strategies
 - **Smart Hints System**: Get helpful hints when you're stuck
 - **Pencil Marks (Notes)**: Add candidate numbers to cells
 - **Auto Pencil**: Automatically fill in all possible candidates
@@ -47,12 +48,21 @@ cd sudoku-game
 npm install
 ```
 
-3. Start the development server:
+3. **(Optional) Setup AI Hints**:
+   - Get a free API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
+   - Create a `.env` file in the root directory
+   - Add your API key:
+   ```
+   VITE_GEMINI_API_KEY=your_api_key_here
+   ```
+   - AI Hints will work automatically once configured
+
+4. Start the development server:
 ```bash
 npm run dev
 ```
 
-4. Open your browser and navigate to `http://localhost:5173`
+5. Open your browser and navigate to `http://localhost:5173`
 
 ## 🛠️ Built With
 

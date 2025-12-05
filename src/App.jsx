@@ -5,6 +5,7 @@ import GameStats from './components/GameStats';
 import WinModal from './components/WinModal';
 import HintModal from './components/HintModal';
 import SettingsModal from './components/SettingsModal';
+import AIHintModal from './components/AIHintModal';
 import Toast from './components/Toast';
 import { generateSudoku, validateBoard, isComplete, getHint, isValid } from './utils/sudokuGenerator';
 import { findSmartHint } from './utils/sudokuSolver';
@@ -43,6 +44,7 @@ function App() {
   const [isPaused, setIsPaused] = useState(false);
   const [showWinModal, setShowWinModal] = useState(false);
   const [showHintModal, setShowHintModal] = useState(false);
+  const [showAIHintModal, setShowAIHintModal] = useState(false);
   const [currentHint, setCurrentHint] = useState(null);
   const [toast, setToast] = useState(null); // { message, type }
 
@@ -446,6 +448,13 @@ function App() {
     playSound('click');
   };
 
+  const handleAIHint = () => {
+    if (isPaused || !board) return;
+    setShowAIHintModal(true);
+    playSound('click');
+  };
+
+
   useEffect(() => {
     const handleKeyPress = (e) => {
       if (isPaused) return;
@@ -597,6 +606,7 @@ function App() {
               timer={timer}
               onNewGame={handleNewGame}
               onHint={handleSmartHint}
+              onAIHint={handleAIHint}
               onValidate={handleValidate}
               onChangeDifficulty={handleDifficultyChange}
               isPaused={isPaused}
@@ -654,6 +664,12 @@ function App() {
         onClose={() => setShowSettingsModal(false)}
         settings={settings}
         onUpdateSettings={setSettings}
+      />
+      <AIHintModal
+        isOpen={showAIHintModal}
+        onClose={() => setShowAIHintModal(false)}
+        board={board}
+        difficulty={difficulty}
       />
     </div>
   );

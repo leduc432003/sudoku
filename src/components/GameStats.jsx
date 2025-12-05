@@ -7,6 +7,7 @@ const GameStats = ({
     timer,
     onNewGame,
     onHint,
+    onAIHint,
     onValidate,
     onChangeDifficulty,
     isPaused,
@@ -83,6 +84,12 @@ const GameStats = ({
                     💡 Gợi Ý
                 </button>
                 <button
+                    onClick={onAIHint}
+                    className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-3 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-lg"
+                >
+                    🤖 AI Gợi Ý
+                </button>
+                <button
                     onClick={onValidate}
                     className="w-full bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-white font-bold py-3 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-lg"
                 >
@@ -90,7 +97,7 @@ const GameStats = ({
                 </button>
                 <button
                     onClick={onNewGame}
-                    className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-3 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-lg"
+                    className="w-full bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white font-bold py-3 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-lg"
                 >
                     🎮 Game Mới
                 </button>
