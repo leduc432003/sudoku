@@ -11,7 +11,8 @@ const GameStats = ({
     onValidate,
     onChangeDifficulty,
     isPaused,
-    onTogglePause
+    onTogglePause,
+    darkMode
 }) => {
     const formatTime = (seconds) => {
         const mins = Math.floor(seconds / 60);
@@ -29,7 +30,7 @@ const GameStats = ({
     };
 
     return (
-        <div className="glass-effect rounded-2xl p-6 shadow-2xl space-y-6">
+        <div className={`glass-effect rounded-2xl p-6 shadow-2xl space-y-6 ${darkMode ? 'bg-gray-800/30' : ''}`}>
             {/* Timer */}
             <div className="text-center relative">
                 <div className="text-white text-sm font-medium mb-2">Thời Gian</div>

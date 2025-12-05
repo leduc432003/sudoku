@@ -10,6 +10,20 @@
   --gradient-danger: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
   --gradient-warning: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
   --gradient-dark: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+
+  /* Light mode colors */
+  --bg-light: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --cell-bg-light: rgba(255, 255, 255, 0.95);
+  --cell-text-light: #1f2937;
+  --cell-given-bg-light: #f3f4f6;
+  --cell-user-bg-light: #ecfdf5;
+
+  /* Dark mode colors */
+  --bg-dark: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+  --cell-bg-dark: rgba(31, 41, 55, 0.95);
+  --cell-text-dark: #f9fafb;
+  --cell-given-bg-dark: #374151;
+  --cell-user-bg-dark: #1f2937;
 }
 
 * {
@@ -24,7 +38,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   min-height: 100vh;
 }
 

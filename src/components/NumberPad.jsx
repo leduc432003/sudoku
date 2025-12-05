@@ -13,7 +13,8 @@ const NumberPad = ({
     onAutoPencil,
     onClearNotes,
     canAutoFinish,
-    onAutoFinish
+    onAutoFinish,
+    darkMode
 }) => {
     return (
         <div className="flex flex-col gap-4 w-full">
@@ -23,8 +24,8 @@ const NumberPad = ({
                     onClick={onUndo}
                     disabled={!canUndo}
                     className={`p-3 rounded-xl font-bold transition-all flex flex-col items-center justify-center text-sm ${canUndo
-                            ? 'bg-gray-200 hover:bg-gray-300 text-gray-700 shadow-sm'
-                            : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                        ? 'bg-gray-200 hover:bg-gray-300 text-gray-700 shadow-sm'
+                        : 'bg-gray-100 text-gray-400 cursor-not-allowed'
                         }`}
                     title="Hoàn tác (Ctrl+Z)"
                 >
@@ -35,8 +36,8 @@ const NumberPad = ({
                     onClick={onRedo}
                     disabled={!canRedo}
                     className={`p-3 rounded-xl font-bold transition-all flex flex-col items-center justify-center text-sm ${canRedo
-                            ? 'bg-gray-200 hover:bg-gray-300 text-gray-700 shadow-sm'
-                            : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                        ? 'bg-gray-200 hover:bg-gray-300 text-gray-700 shadow-sm'
+                        : 'bg-gray-100 text-gray-400 cursor-not-allowed'
                         }`}
                     title="Làm lại (Ctrl+Y)"
                 >
@@ -46,8 +47,8 @@ const NumberPad = ({
                 <button
                     onClick={onNoteToggle}
                     className={`p-3 rounded-xl font-bold transition-all flex flex-col items-center justify-center text-sm ${isNoteMode
-                            ? 'bg-yellow-400 text-white shadow-md scale-105 ring-2 ring-yellow-200'
-                            : 'bg-gray-200 hover:bg-gray-300 text-gray-700 shadow-sm'
+                        ? 'bg-yellow-400 text-white shadow-md scale-105 ring-2 ring-yellow-200'
+                        : 'bg-gray-200 hover:bg-gray-300 text-gray-700 shadow-sm'
                         }`}
                     title="Chế độ ghi chú (N)"
                 >
@@ -102,8 +103,8 @@ const NumberPad = ({
                         className={`
               relative h-12 sm:h-14 rounded-lg xl:rounded-xl font-bold text-xl sm:text-2xl transition-all shadow-sm
               ${remainingCounts[num] === 0
-                                ? 'bg-gray-100 text-gray-300 cursor-not-allowed'
-                                : 'bg-white hover:bg-blue-50 text-blue-600 hover:shadow-md active:scale-95 border border-gray-200'
+                                ? `${darkMode ? 'bg-gray-700 text-gray-500' : 'bg-gray-100 text-gray-300'} cursor-not-allowed`
+                                : `${darkMode ? 'bg-gray-700 hover:bg-gray-600 text-gray-100 border-gray-600' : 'bg-white hover:bg-blue-50 text-blue-600 border-gray-200'} hover:shadow-md active:scale-95 border`
                             }
             `}
                     >

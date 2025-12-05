@@ -9,31 +9,38 @@ const SudokuCell = ({
     isSameNumber,
     hasError,
     notes,
-    isRelated, // Prop mới
-    onClick
+    isRelated,
+    onClick,
+    darkMode
 }) => {
     const getCellClasses = () => {
-        let classes = 'sudoku-cell relative';
+        let classes = 'sudoku-cell relative transition-colors duration-200';
+
+        // Base styling based on dark mode
+        if (darkMode) {
+            classes += ' bg-gray-700 text-gray-100';
+        }
 
         if (isGiven) classes += ' given';
         else if (value !== 0) classes += ' user-input';
 
         if (isSelected) classes += ' selected';
-        else if (isRelated) classes += ' related'; // Style cho ô liên quan
+        else if (isRelated) classes += ' related';
 
         if (isSameNumber && value !== 0) classes += ' same-number';
         if (hasError) classes += ' error';
 
         // Thêm border đậm cho các ô 3x3
         const borderClasses = [];
-        if (row % 3 === 0 && row !== 0) borderClasses.push('border-t-4 border-t-gray-800');
-        if (col % 3 === 0 && col !== 0) borderClasses.push('border-l-4 border-l-gray-800');
-        if (row === 8) borderClasses.push('border-b-4 border-b-gray-800');
-        if (col === 8) borderClasses.push('border-r-4 border-r-gray-800');
-        if (row === 0) borderClasses.push('border-t-4 border-t-gray-800');
-        if (col === 0) borderClasses.push('border-l-4 border-l-gray-800');
+        const borderColor = darkMode ? 'border-gray-600' : 'border-gray-800';
+        if (row % 3 === 0 && row !== 0) borderClasses.push(`border-t-4 border-t-${darkMode ? 'gray-600' : 'gray-800'}`);
+        if (col % 3 === 0 && col !== 0) borderClasses.push(`border-l-4 border-l-${darkMode ? 'gray-600' : 'gray-800'}`);
+        if (row === 8) borderClasses.push(`border-b-4 border-b-${darkMode ? 'gray-600' : 'gray-800'}`);
+        if (col === 8) borderClasses.push(`border-r-4 border-r-${darkMode ? 'gray-600' : 'gray-800'}`);
+        if (row === 0) borderClasses.push(`border-t-4 border-t-${darkMode ? 'gray-600' : 'gray-800'}`);
+        if (col === 0) borderClasses.push(`border-l-4 border-l-${darkMode ? 'gray-600' : 'gray-800'}`);
 
-        return `${classes} ${borderClasses.join(' ')} border border-gray-300`;
+        return `${classes} ${borderClasses.join(' ')} border ${darkMode ? 'border-gray-600' : 'border-gray-300'}`;
     };
 
     return (

@@ -78,6 +78,23 @@ const SettingsModal = ({ isOpen, onClose, settings, onUpdateSettings }) => {
                         </button>
                     </div>
 
+                    {/* Dark Mode Setting */}
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                            <span className="text-2xl">{settings.darkMode ? '🌙' : '☀️'}</span>
+                            <div>
+                                <p className="font-bold text-gray-800">Chế độ tối</p>
+                                <p className="text-xs text-gray-500">Bật/Tắt giao diện tối</p>
+                            </div>
+                        </div>
+                        <button
+                            onClick={() => handleToggle('darkMode')}
+                            className={`w-14 h-8 rounded-full p-1 transition-all duration-300 ${settings.darkMode ? 'bg-blue-500' : 'bg-gray-300'}`}
+                        >
+                            <div className={`w-6 h-6 bg-white rounded-full shadow-md transform transition-transform duration-300 ${settings.darkMode ? 'translate-x-6' : 'translate-x-0'}`} />
+                        </button>
+                    </div>
+
                 </div>
 
                 {/* Footer */}

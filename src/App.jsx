@@ -20,7 +20,8 @@ function App() {
     return savedSettings ? JSON.parse(savedSettings) : {
       soundEnabled: true,
       autoRemoveNotes: true,
-      highlightSameNumbers: true
+      highlightSameNumbers: true,
+      darkMode: false
     };
   });
 
@@ -573,7 +574,10 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-500 to-purple-600 p-4 flex flex-col items-center justify-center font-sans relative">
+    <div className={`min-h-screen p-4 flex flex-col items-center justify-center font-sans relative transition-colors duration-300 ${settings.darkMode
+      ? 'bg-gradient-to-br from-gray-900 to-gray-800'
+      : 'bg-gradient-to-br from-blue-500 to-purple-600'
+      }`}>
       {/* Settings Button */}
       <button
         onClick={() => setShowSettingsModal(true)}
@@ -611,6 +615,7 @@ function App() {
               onChangeDifficulty={handleDifficultyChange}
               isPaused={isPaused}
               onTogglePause={handleTogglePause}
+              darkMode={settings.darkMode}
             />
           </div>
 
@@ -625,6 +630,7 @@ function App() {
               onTogglePause={handleTogglePause}
               onCellClick={handleCellClick}
               highlightSameNumbers={settings.highlightSameNumbers}
+              darkMode={settings.darkMode}
             />
           </div>
 
@@ -643,6 +649,7 @@ function App() {
               onClearNotes={handleClearNotes}
               canAutoFinish={canAutoFinish}
               onAutoFinish={handleAutoFinish}
+              darkMode={settings.darkMode}
             />
           </div>
         </div>
