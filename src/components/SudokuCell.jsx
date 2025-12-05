@@ -16,9 +16,9 @@ const SudokuCell = ({
     const getCellClasses = () => {
         let classes = 'sudoku-cell relative transition-colors duration-200';
 
-        // Base styling based on dark mode
+        // Add dark mode class
         if (darkMode) {
-            classes += ' bg-gray-700 text-gray-100';
+            classes += ' dark-mode';
         }
 
         if (isGiven) classes += ' given';
@@ -30,17 +30,21 @@ const SudokuCell = ({
         if (isSameNumber && value !== 0) classes += ' same-number';
         if (hasError) classes += ' error';
 
-        // Thêm border đậm cho các ô 3x3
-        const borderClasses = [];
-        const borderColor = darkMode ? 'border-gray-600' : 'border-gray-800';
-        if (row % 3 === 0 && row !== 0) borderClasses.push(`border-t-4 border-t-${darkMode ? 'gray-600' : 'gray-800'}`);
-        if (col % 3 === 0 && col !== 0) borderClasses.push(`border-l-4 border-l-${darkMode ? 'gray-600' : 'gray-800'}`);
-        if (row === 8) borderClasses.push(`border-b-4 border-b-${darkMode ? 'gray-600' : 'gray-800'}`);
-        if (col === 8) borderClasses.push(`border-r-4 border-r-${darkMode ? 'gray-600' : 'gray-800'}`);
-        if (row === 0) borderClasses.push(`border-t-4 border-t-${darkMode ? 'gray-600' : 'gray-800'}`);
-        if (col === 0) borderClasses.push(`border-l-4 border-l-${darkMode ? 'gray-600' : 'gray-800'}`);
+        return classes;
+    };
 
-        return `${classes} ${borderClasses.join(' ')} border ${darkMode ? 'border-gray-600' : 'border-gray-300'}`;
+    const getBorderStyle = () => {
+        const style = {};
+        const thickBorder = darkMode ? '3px solid #1f2937' : '3px solid #111827';
+        const normalBorder = darkMode ? '1px solid #4b5563' : '1px solid #d1d5db';
+
+        // Viền dày cho các khối 3x3
+        style.borderTop = (row % 3 === 0) ? thickBorder : normalBorder;
+        style.borderLeft = (col % 3 === 0) ? thickBorder : normalBorder;
+        style.borderBottom = (row === 8 || (row + 1) % 3 === 0) ? thickBorder : normalBorder;
+        style.borderRight = (col === 8 || (col + 1) % 3 === 0) ? thickBorder : normalBorder;
+
+        return style;
     };
 
     return (
@@ -49,6 +53,7 @@ const SudokuCell = ({
             onClick={() => onClick(row, col)}
             style={{
                 aspectRatio: '1/1',
+                ...getBorderStyle()
             }}
         >
             {value !== 0 ? (

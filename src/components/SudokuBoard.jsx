@@ -56,8 +56,8 @@ const SudokuBoard = ({
                 </div>
             )}
             <div
-                className={`grid grid-cols-9 gap-0 p-1 rounded-xl overflow-hidden transition-all duration-300 ${isPaused ? 'blur-sm' : ''
-                    } ${darkMode ? 'bg-gray-700' : 'bg-gray-800'}`}
+                className={`grid grid-cols-9 gap-0 p-0 rounded-xl overflow-hidden transition-all duration-300 ${isPaused ? 'blur-sm' : ''
+                    } ${darkMode ? 'bg-gray-900' : 'bg-gray-900'}`}
                 style={{
                     width: 'min(90vw, 540px)',
                     height: 'min(90vw, 540px)',

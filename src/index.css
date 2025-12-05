@@ -66,11 +66,11 @@ body {
 
   .sudoku-cell {
     @apply w-full h-full flex items-center justify-center font-bold transition-all duration-200 cursor-pointer;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.98);
     color: #1f2937;
     font-size: 1.25rem;
-    /* 20px - explicit size */
     line-height: 1;
+    border: 1px solid #d1d5db;
   }
 
   .sudoku-cell:hover {
@@ -78,17 +78,34 @@ body {
     transform: scale(1.05);
   }
 
+  /* Dark mode base */
+  .sudoku-cell.dark-mode {
+    background: rgba(55, 65, 81, 0.95);
+    color: #f9fafb;
+    border-color: #4b5563;
+  }
+
   /* Base cell types - lowest priority */
   .sudoku-cell.given {
-    background-color: #f3f4f6 !important;
-    color: #1f2937 !important;
+    background-color: #e5e7eb !important;
+    color: #111827 !important;
     font-weight: 800 !important;
   }
 
+  .sudoku-cell.dark-mode.given {
+    background-color: #4b5563 !important;
+    color: #f3f4f6 !important;
+  }
+
   .sudoku-cell.user-input {
-    background-color: #ecfdf5 !important;
-    color: #2563eb !important;
-    font-weight: 600 !important;
+    background-color: #dbeafe !important;
+    color: #1d4ed8 !important;
+    font-weight: 700 !important;
+  }
+
+  .sudoku-cell.dark-mode.user-input {
+    background-color: #1e3a8a !important;
+    color: #93c5fd !important;
   }
 
   /* Related cells highlight */
